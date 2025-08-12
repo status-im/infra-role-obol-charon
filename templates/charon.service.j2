@@ -1,0 +1,25 @@
+[Unit]
+Description=Obol Distributed Validator Charon Middleware
+Documentation=https://github.com/ObolNetwork/charon
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+User={{ obol_charon_user }}
+Group={{ obol_charon_group }}
+WorkingDirectory={{ obol_charon_service_path }}
+SyslogIdentifier={{ obol_charon_service_name }}
+SyslogFacility=local6
+SyslogLevel=debug
+Restart=on-failure
+ExecStart={{ obol_charon_bin_path }}/charon run \
+  --log-color=disable \
+  --log-format={{ obol_charon_log_format }} \
+  --log-level={{ obol_charon_log_level }} \
+  --beacon-node-endpoints={{ obol_charon_beacon_node_urls | mandatory | join(",") }} \
+  --execution-client-rpc-endpoint={{ obol_charon_execution_client_rpc_url | mandatory | join(",") }} \
+  --validator-api-address={{ obol_charon_validator_api_host }}:{{ obol_charon_validator_api_port }} \
+  --monitoring-address={{ obol_charon_monitoring_host }}:{{ obol_charon_monitoring_port }}
+
+[Install]
+WantedBy=multi-user.target

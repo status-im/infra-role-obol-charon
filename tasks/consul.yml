@@ -1,0 +1,27 @@
+---
+- name: Create Consul service definition
+  include_role: name=infra-role-consul-service
+  vars:
+    consul_config_name: '{{ obol_charon_consul_name }}'
+    consul_services:
+      - id:      '{{ obol_charon_consul_name }}'
+        name:    '{{ obol_charon_consul_name }}'
+        tags:    '{{ obol_charon_consul_tags }}'
+        port:    '{{ obol_charon_validator_api_port }}'
+        address: '{{ ansible_local.wireguard.address }}'
+        checks:
+          - id:   '{{ obol_charon_consul_name }}-health'
+            name: 'Obol Charon DVT Healthcheck'
+            type: 'http'
+            http: 'http://localhost:{{ obol_charon_validator_api_port }}/'
+
+      - id:      '{{ obol_charon_consul_name }}-metrics-'
+        name:    '{{ obol_charon_consul_name }}-metrics'
+        tags:    '{{ obol_charon_consul_tags }}'
+        port:    '{{ obol_charon_monitoring_port }}'
+        address: '{{ ansible_local.wireguard.address }}'
+        checks:
+          - id:   '{{ obol_charon_consul_name }}-metrics-health'
+            name: 'Obol Charon DVT Metrics Healthcheck'
+            type: 'http'
+            http: 'http://localhost:{{ obol_charon_monitoring_port }}/health'

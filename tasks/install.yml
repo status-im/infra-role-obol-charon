@@ -1,0 +1,37 @@
+---
+- name: Check if binary exists
+  stat:
+    path: '{{ obol_charon_bin_path }}/charon'
+  register: obol_charon_binary
+
+- name: Check binary version
+  when: obol_charon_binary.stat.exists
+  register: obol_charon_version_output
+  command: '{{ obol_charon_bin_path }}/charon version'
+
+- name: Install binary
+  when: >
+    not obol_charon_binary.stat.exists or
+    obol_charon_version not in obol_charon_version_output.stdout
+  block:
+    - name: Download tarball
+      get_url:
+        url:      '{{ obol_charon_tarball_url }}'
+        dest:     '/tmp/{{ obol_charon_tarball_name }}'
+        checksum: 'sha256:{{ obol_charon_tarball_sha256 }}'
+        mode:     '0755'
+
+    # This removes the .gz file by default.
+    - name: Unpack binary from tarball
+      unarchive:
+        src:        '/tmp/{{ obol_charon_tarball_name }}'
+        dest:       '{{ obol_charon_bin_path }}'
+        remote_src: true
+        owner:      'root'
+        group:      'root'
+
+    - name: Symlink charon binary
+      file:
+        src:   '{{ obol_charon_bin_path }}/{{ obol_charon_bin_name }}'
+        dest:  '{{ obol_charon_bin_path }}/charon'
+        state: 'link'

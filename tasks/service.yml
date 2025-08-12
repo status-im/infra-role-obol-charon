@@ -1,0 +1,16 @@
+---
+- name: Create systemd Unit file
+  template:
+    src: 'charon.service.j2'
+    dest: '/etc/systemd/system/{{ obol_charon_service_name }}.service'
+    mode: 0644
+  register: obol_charon_service_definition
+
+- name: Reload and restart the service
+  systemd:
+    name: '{{ obol_charon_service_name }}.service'
+    enabled: true
+    daemon_reload: true
+    state: >-
+      {{ obol_charon_service_definition.changed
+         | ternary("restarted", "started") }}

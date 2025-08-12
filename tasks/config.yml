@@ -1,0 +1,21 @@
+---
+- name: Create group
+  group:
+    name: '{{ obol_charon_group }}'
+    gid:  '{{ obol_charon_gid }}'
+
+- name: Create user
+  user:
+    name:  '{{ obol_charon_user }}'
+    uid:   '{{ obol_charon_uid }}'
+    group: '{{ obol_charon_group }}'
+    shell: '/bin/bash'
+
+- name: Create directory
+  file:
+    path:  '{{ item }}'
+    state: directory
+    owner: '{{ obol_charon_user }}'
+    group: '{{ obol_charon_group }}'
+  with_items:
+    - '{{ obol_charon_service_path }}'
