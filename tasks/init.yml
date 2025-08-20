@@ -14,7 +14,7 @@
   become_user: '{{ obol_charon_user }}'
 
 - name: Save Obol DVT ENR address
-  when: not obol_charon_enr.changed
+  when: obol_charon_enr.changed
   copy:
     dest:    '{{ obol_charon_enr_path }}'
     content: '{{ obol_charon_enr.stdout_lines[1] }}'
