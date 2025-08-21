@@ -13,9 +13,9 @@
           - id:   '{{ obol_charon_consul_name }}-health'
             name: 'Obol Charon DVT Healthcheck'
             type: 'http'
-            http: 'http://localhost:{{ obol_charon_validator_api_port }}/'
+            http: 'http://localhost:{{ obol_charon_validator_api_port }}/eth/v1/node/version'
 
-      - id:      '{{ obol_charon_consul_name }}-metrics-'
+      - id:      '{{ obol_charon_consul_name }}-metrics'
         name:    '{{ obol_charon_consul_name }}-metrics'
         tags:    '{{ obol_charon_consul_tags }}'
         port:    '{{ obol_charon_monitoring_port }}'
@@ -24,4 +24,4 @@
           - id:   '{{ obol_charon_consul_name }}-metrics-health'
             name: 'Obol Charon DVT Metrics Healthcheck'
             type: 'http'
-            http: 'http://localhost:{{ obol_charon_monitoring_port }}/health'
+            http: 'http://localhost:{{ obol_charon_monitoring_port }}/readyz'
