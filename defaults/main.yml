@@ -19,6 +19,9 @@ obol_charon_gid: 9001
 obol_charon_log_format: 'json' # console, logfmt, json
 obol_charon_log_level: 'debug' # debug, info, warn, error
 
+# Optional node name
+#obol_charon_nickname: ~
+
 obol_charon_beacon_node_urls: []
 obol_charon_execution_client_rpc_url: []
 obol_charon_validator_api_port: 3600

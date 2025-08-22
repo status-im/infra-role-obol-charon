@@ -13,6 +13,9 @@ SyslogFacility=local6
 SyslogLevel=debug
 Restart=on-failure
 ExecStart={{ obol_charon_bin_path }}/charon run \
+{% if obol_charon_nickname is defined %}
+  --nickname={{ obol_charon_nickname }} \
+{% endif %}
   --log-color=disable \
   --log-format={{ obol_charon_log_format }} \
   --log-level={{ obol_charon_log_level }} \
