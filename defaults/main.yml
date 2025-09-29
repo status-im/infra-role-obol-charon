@@ -18,6 +18,7 @@ obol_charon_gid: 9001
 
 obol_charon_log_format: 'json' # console, logfmt, json
 obol_charon_log_level: 'debug' # debug, info, warn, error
+obol_charon_feature_set: ['json_requests']
 
 # Optional node name
 #obol_charon_nickname: ~
