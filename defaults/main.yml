@@ -4,12 +4,12 @@ obol_charon_service_path: '/data/{{ obol_charon_service_name }}'
 obol_charon_private_key_path: '{{ obol_charon_service_path }}/.charon/charon-enr-private-key'
 obol_charon_enr_path: '{{ obol_charon_service_path }}/enr'
 
-obol_charon_version: 'v1.5.2'
+obol_charon_version: 'v1.7.1'
 obol_charon_bin_path: '/usr/local/bin'
 obol_charon_bin_name: 'charon-{{ obol_charon_version }}-linux-amd64'
 obol_charon_tarball_name: 'charon-{{ obol_charon_version }}-linux-amd64.tar.gz'
 obol_charon_tarball_url: 'https://github.com/ObolNetwork/charon/releases/download/{{ obol_charon_version }}/{{ obol_charon_tarball_name }}'
-obol_charon_tarball_sha256: '264b39ba6ff2a1019195dff28d8635fd506879aec7a95aad83434267f4b3d2a8'
+obol_charon_tarball_sha256: '162f80f9e9d4e3254503f0588fced8869f633ccbbc16bda39b946b88ac5a852a.'
 
 obol_charon_user: 'obol'
 obol_charon_uid: 9001
