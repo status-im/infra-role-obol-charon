@@ -2,9 +2,9 @@
 - name: Create Consul service definition
   include_role: name=infra-role-consul-service
   vars:
-    consul_config_name: '{{ obol_charon_consul_name }}'
+    consul_config_name: '{{ obol_charon_consul_id }}'
     consul_services:
-      - id:      '{{ obol_charon_consul_name }}'
+      - id:      '{{ obol_charon_consul_id }}'
         name:    '{{ obol_charon_consul_name }}'
         tags:    '{{ obol_charon_consul_tags }}'
         port:    '{{ obol_charon_validator_api_port }}'
@@ -15,7 +15,7 @@
             type: 'http'
             http: 'http://localhost:{{ obol_charon_validator_api_port }}/eth/v1/node/version'
 
-      - id:      '{{ obol_charon_consul_name }}-metrics'
+      - id:      '{{ obol_charon_consul_id }}-metrics'
         name:    '{{ obol_charon_consul_name }}-metrics'
         tags:    '{{ obol_charon_consul_tags }}'
         port:    '{{ obol_charon_monitoring_port }}'
