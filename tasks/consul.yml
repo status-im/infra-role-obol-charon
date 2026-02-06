@@ -21,7 +21,7 @@
         port:    '{{ obol_charon_monitoring_port }}'
         address: '{{ ansible_local.wireguard.address }}'
         checks:
-          - id:   '{{ obol_charon_consul_name }}-metrics-health'
+          - id:   '{{ obol_charon_consul_id }}-metrics-health'
             name: 'Obol Charon DVT Metrics Healthcheck'
             type: 'http'
             http: 'http://localhost:{{ obol_charon_monitoring_port }}/readyz'
