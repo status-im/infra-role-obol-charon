@@ -32,6 +32,8 @@ obol_charon_validator_api_port: 3600
 obol_charon_validator_api_host: '127.0.0.1'
 obol_charon_monitoring_port: 3620
 obol_charon_monitoring_host: '127.0.0.1'
+obol_charon_p2p_host: '0.0.0.0'
+obol_charon_p2p_port: 3610
 
 obol_charon_consul_id: '{{ obol_charon_service_name }}'
 obol_charon_consul_name: 'obol-charon'
