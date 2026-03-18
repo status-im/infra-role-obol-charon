@@ -9,6 +9,8 @@
         tags:    '{{ obol_charon_consul_tags }}'
         port:    '{{ obol_charon_validator_api_port }}'
         address: '{{ ansible_local.wireguard.address }}'
+        meta:
+          container: '{{ obol_charon_consul_id }}'
         checks:
           - id:   '{{ obol_charon_consul_name }}-health'
             name: 'Obol Charon DVT Healthcheck'
@@ -20,6 +22,8 @@
         tags:    '{{ obol_charon_consul_tags }}'
         port:    '{{ obol_charon_monitoring_port }}'
         address: '{{ ansible_local.wireguard.address }}'
+        meta:
+          container: '{{ obol_charon_consul_id }}'
         checks:
           - id:   '{{ obol_charon_consul_id }}-metrics-health'
             name: 'Obol Charon DVT Metrics Healthcheck'
