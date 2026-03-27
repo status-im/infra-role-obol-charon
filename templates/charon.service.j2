@@ -22,6 +22,9 @@ ExecStart={{ obol_charon_bin_path }}/charon run \
   --log-color=disable \
   --log-format={{ obol_charon_log_format }} \
   --log-level={{ obol_charon_log_level }} \
+{% if obol_charon_loki_address is defined %}
+  --loki-addresses='{{ obol_charon_loki_address }}' \
+{% endif %}
   --feature-set-enable={{ obol_charon_feature_set | join(",") }} \
   --beacon-node-endpoints={{ obol_charon_beacon_node_urls | mandatory | join(",") }} \
   --execution-client-rpc-endpoint={{ obol_charon_execution_client_rpc_url | mandatory | join(",") }} \
